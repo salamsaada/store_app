@@ -54,6 +54,8 @@ class Api {
       'Content-Type' : 'application/x-www-form-urlencoded',
     });
 
+    print('url : $url body : $body token : $token');
+
     if(token != null){
       headers.addAll({
         'Authorization': 'Bearer $token'
@@ -68,7 +70,7 @@ class Api {
       if(response.statusCode ==200){
         
       Map<String, dynamic> data = jsonDecode(response.body);
-
+      print(data);
       return data; 
       }else{
         throw Exception('there is a problem in status code ${response.statusCode} with body ${jsonDecode(response.body)}');

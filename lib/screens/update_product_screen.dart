@@ -79,8 +79,9 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
                     setState(() {
                       
                     });
-                    try {
+                    try{
                  updateProduct(product);
+
                  print('success');
                   } catch (e) {
                     print(e.toString());
@@ -100,14 +101,14 @@ class _UpdateProductScreenState extends State<UpdateProductScreen> {
     );
   }
 
-  void updateProduct(ProductModel product) {
-    UpdateProductService().updateProduct(
-      title: productName!, 
-      price: price!, 
-      description: desc!, 
-      image: image! ,  
+  Future<void> updateProduct(ProductModel product) async{
+   await UpdateProductService().updateProduct(
+    id: product.id,
+      title: productName == null ? product.title : productName!, 
+      price: price == null ? product.price.toString() : price!, 
+      description: desc == null ? product.description : desc!, 
+      image: image == null ? product.image : image!,  
       category: product.category);
     
-      isLoading=false;
   }
 }
